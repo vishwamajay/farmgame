@@ -22,7 +22,10 @@ The game ends after 50 turns. If the farmer and at least one cow and one bunny a
 **How to play**
 
 - There’s a button to start a new game.
-- There's another button to randomly feed just one asset (farmer or animal). Every click on this button is a turn.
+- There's a single button to feed the farmer and the animals. 
+Every time you click on that button, the system randomly chooses whom to feed. 
+Every click on this button is a turn. The maximum number of turns is 50.
+Don't focus on winning or losing, but on building the game as described.
 
 **What we expect**
 - Create a new branch for you to use and push your code.
