@@ -40,3 +40,29 @@ function createGameMatrix(){
         ajaxRequestObject.open("GET", "gameMatrix.php" + queryString, true);
         ajaxRequestObject.send(null); 
 }
+
+function feedFarmerAnimal(){
+        ajaxRequestObject = createAjaxObject();	
+
+        ajaxRequestObject.onreadystatechange = function(){
+           if(ajaxRequestObject.readyState == 4){
+                if(ajaxRequestObject.responseText == 'FCE'){
+                    alert('Sorry you have exceeded the feed limit, Start a New game');
+                    //Disable click to feed button 
+                    document.getElementById('feedFarmerAnimal').disabled = true;
+                }
+                else{
+                	var ajaxDisplay = document.getElementById(ajaxRequestObject.responseText);
+                    ajaxDisplay.innerHTML = 'Fed';
+                    ajaxDisplay.style.fontStyle = "italic"
+                    ajaxDisplay.style.backgroundColor = "#33ff33"; 
+                }
+            }
+        }
+        
+        var date = new Date();
+        var timestamp = date.getTime();
+		var queryString = "?tmp=" + timestamp ;
+        ajaxRequestObject.open("GET", "feedFarmerAnimals.php" + queryString, true);
+        ajaxRequestObject.send(null);  	
+}
