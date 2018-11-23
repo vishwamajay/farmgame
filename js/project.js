@@ -51,21 +51,36 @@ function feedFarmerAnimal(){
                     //Disable click to feed button 
                     document.getElementById('feedFarmerAnimal').disabled = true;
                 }
-                else if(ajaxRequestObject.responseText == 'FDGO'){
-                    alert('Sorry Farmer died, Game Over - Start a New game');
-                    //Disable click to feed button 
-                    document.getElementById('feedFarmerAnimal').disabled = true;
-                }
                 else{
-                    //alert(ajaxRequestObject.responseText);
-                    //var ajaxDisplay = document.getElementById(ajaxRequestObject.responseText);
                     var arrDisplay = ajaxRequestObject.responseText.split('|');
-                    alert(arrDisplay[1] +'==='+arrDisplay[0]);
-
-                    var ajaxDisplay = document.getElementById(arrDisplay[0]);
-                    ajaxDisplay.innerHTML = 'Fed';
-                    ajaxDisplay.style.fontStyle = "italic"
-                    ajaxDisplay.style.backgroundColor = "#33ff33"; 
+                    //alert(arrDisplay[1] +'==='+arrDisplay[0]);
+                    
+                    if(arrDisplay[0] == 'FDGO'){ //Farmer died Game Over
+                        document.getElementById('feedFarmerAnimal').disabled = true;
+                        alert('Sorry Farmer died, Game Over - Start a New game');
+                        var ajaxDisplay = document.getElementById('type_'+arrDisplay[1]);
+                        ajaxDisplay.style.backgroundColor = "#e60000";
+                        ajaxDisplay.style.color = "#ffffff";
+                    }
+                    else if(arrDisplay[0] == 'OCD'){ //One cow died
+                        alert('Sorry one cow died');
+                        var ajaxDisplay = document.getElementById('type_'+arrDisplay[1]);
+                        ajaxDisplay.style.backgroundColor = "#e60000";
+                        ajaxDisplay.style.color = "#ffffff";
+                    }
+                    else if(arrDisplay[0] == 'OBD'){ //One bunny died
+                        alert('Sorry one bunny died');
+                        var ajaxDisplay = document.getElementById('type_'+arrDisplay[1]);
+                        ajaxDisplay.style.backgroundColor = "#e60000";
+                        ajaxDisplay.style.color = "#ffffff";
+                    }    
+                    else{
+                        var ajaxDisplay = document.getElementById(arrDisplay[0]);
+                        ajaxDisplay.innerHTML = 'Fed';
+                        ajaxDisplay.style.fontStyle = "italic"
+                        ajaxDisplay.style.backgroundColor = "#33ff33";
+                    }
+                     
                 }
             }
         }
