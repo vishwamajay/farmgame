@@ -51,8 +51,18 @@ function feedFarmerAnimal(){
                     //Disable click to feed button 
                     document.getElementById('feedFarmerAnimal').disabled = true;
                 }
+                else if(ajaxRequestObject.responseText == 'FDGO'){
+                    alert('Sorry Farmer died, Game Over - Start a New game');
+                    //Disable click to feed button 
+                    document.getElementById('feedFarmerAnimal').disabled = true;
+                }
                 else{
-                	var ajaxDisplay = document.getElementById(ajaxRequestObject.responseText);
+                    //alert(ajaxRequestObject.responseText);
+                    //var ajaxDisplay = document.getElementById(ajaxRequestObject.responseText);
+                    var arrDisplay = ajaxRequestObject.responseText.split('|');
+                    alert(arrDisplay[1] +'==='+arrDisplay[0]);
+
+                    var ajaxDisplay = document.getElementById(arrDisplay[0]);
                     ajaxDisplay.innerHTML = 'Fed';
                     ajaxDisplay.style.fontStyle = "italic"
                     ajaxDisplay.style.backgroundColor = "#33ff33"; 

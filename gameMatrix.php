@@ -6,6 +6,14 @@
 
     $_SESSION['int_feed_counter'] = 0;
 
+    //Intialize default fed click
+    $_SESSION['int_fed_clicks_farmer'] = 0; 
+    $_SESSION['int_fed_clicks_cows'] = 0; 
+    $_SESSION['int_fed_clicks_bunny'] = 0;
+
+    //Combining arrays by preserving keys
+    $array_farmers_animals = $arr_farmer_type_ids + $arr_cow_type_ids + $arr_bunny_type_ids;
+    
     //Getting count of farmers and animals
     $int_count_farmers_animals = count($array_farmers_animals);
       
