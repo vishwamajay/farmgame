@@ -3,14 +3,7 @@
     
     //Intialize session and set default feed count session variable to zero
     session_start();
-
-    $_SESSION['int_feed_counter'] = 0;
-
-    //Intialize default fed click
-    $_SESSION['int_fed_clicks_farmer'] = 0; 
-    $_SESSION['int_fed_clicks_cows'] = 0; 
-    $_SESSION['int_fed_clicks_bunny'] = 0;
-
+    
     //Combining arrays by preserving keys
     $array_farmers_animals = $arr_farmer_type_ids + $arr_cow_type_ids + $arr_bunny_type_ids;
 
@@ -18,11 +11,28 @@
     $_SESSION['arr_farmer_type_ids'] = $arr_farmer_type_ids; 
     $_SESSION['arr_cow_type_ids'] = $arr_cow_type_ids;
     $_SESSION['arr_bunny_type_ids'] = $arr_bunny_type_ids;
-    
+
+    $_SESSION['int_feed_counter'] = 0;
+
+    //Intialize default fed click counters
+    $_SESSION['int_fed_clicks_farmer'] = 0;    
+
+    if( is_array($_SESSION['arr_cow_type_ids']) && count($_SESSION['arr_cow_type_ids']) > 0 ){
+      foreach($_SESSION['arr_cow_type_ids'] as $key_cow_type_id => $value_cow_type_id){
+          $_SESSION['int_fed_clicks_cows_'.$key_cow_type_id] = 0;
+      }  
+    }
+      
+    if( is_array($_SESSION['arr_bunny_type_ids']) && count($_SESSION['arr_bunny_type_ids']) > 0 ){
+      foreach($_SESSION['arr_bunny_type_ids'] as $key_bunny_type_id => $value_bunny_type_id){
+          $_SESSION['int_fed_clicks_bunny_'.$key_bunny_type_id] = 0;
+      }  
+    }
+
     //Getting count of farmers and animals
     $int_count_farmers_animals = count($array_farmers_animals);
       
-      //Setting grid html in a variable, which can be printed  
+    //Setting grid html in a variable, which can be printed  
       $str_grid_html = '<input type="button" onclick="feedFarmerAnimal()" value="Click Here To Feed" name="feedFarmerAnimal" id="feedFarmerAnimal" />';
 
       $str_grid_html.= '<table>';

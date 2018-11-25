@@ -16,5 +16,5 @@
     //Click limit for feeding
     $int_max_fed_clicks_farmer = 15;
     $int_max_fed_clicks_cows = 2;//10;
-    $int_max_fed_clicks_bunny = 3;//8;
+    $int_max_fed_clicks_bunny = 2;//8;
 

@@ -1,4 +1,6 @@
-
+/**
+Usage : create and return XMLHttpRequest Object for Ajax operations
+**/
 function createAjaxObject(){
    var ajaxRequestObject;
                
@@ -23,6 +25,10 @@ function createAjaxObject(){
     }
     return ajaxRequestObject;
 }    
+
+/**
+Usage : Ajax function call to create and return intial game matrix 
+**/
                
 function createGameMatrix(){
         ajaxRequestObject = createAjaxObject();	
@@ -41,6 +47,9 @@ function createGameMatrix(){
         ajaxRequestObject.send(null); 
 }
 
+/**
+Usage : Ajax function call to set and return fed to and isAlive farmers/animals 
+**/
 function feedFarmerAnimal(){
         ajaxRequestObject = createAjaxObject();	
 
@@ -63,13 +72,13 @@ function feedFarmerAnimal(){
                         ajaxDisplay.style.color = "#ffffff";
                     }
                     else if(arrDisplay[0] == 'OCD'){ //One cow died
-                        alert('Sorry one cow died');
+                        alert('Sorry one cow died === '+arrDisplay[1]);
                         var ajaxDisplay = document.getElementById('type_'+arrDisplay[1]);
                         ajaxDisplay.style.backgroundColor = "#e60000";
                         ajaxDisplay.style.color = "#ffffff";
                     }
                     else if(arrDisplay[0] == 'OBD'){ //One bunny died
-                        alert('Sorry one bunny died');
+                        alert('Sorry one bunny died === '+arrDisplay[1]);
                         var ajaxDisplay = document.getElementById('type_'+arrDisplay[1]);
                         ajaxDisplay.style.backgroundColor = "#e60000";
                         ajaxDisplay.style.color = "#ffffff";
