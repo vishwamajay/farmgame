@@ -55,41 +55,49 @@ function feedFarmerAnimal(){
 
         ajaxRequestObject.onreadystatechange = function(){
            if(ajaxRequestObject.readyState == 4){
-                if(ajaxRequestObject.responseText == 'FCE'){
+                if(ajaxRequestObject.responseText == 'FCE'){//This would indicate max feed counter exceeded
                     alert('Sorry you have exceeded the feed limit, Start a New game');
                     //Disable click to feed button 
                     document.getElementById('feedFarmerAnimal').disabled = true;
                 }
                 else{
                     var arrDisplay = ajaxRequestObject.responseText.split('|');
-                    //alert(arrDisplay[1] +'==='+arrDisplay[0]);
+                    //alert(arrDisplay[0]+ ' == '+arrDisplay[1]+ ' == '+arrDisplay[2]);
                     
-                    if(arrDisplay[0] == 'FDGO'){ //Farmer died Game Over
+                    var ajaxDisplay = document.getElementById(arrDisplay[0]);
+                    ajaxDisplay.innerHTML = 'Fed';
+                    ajaxDisplay.style.fontStyle = "italic"
+                    ajaxDisplay.style.backgroundColor = "#33ff33";
+
+                    if(arrDisplay[1] == 'FOAD'){
+                        var arrDeadIds = arrDisplay[2].split('~');
+                        for(var intIterator = 0; intIterator < arrDeadIds.length; intIterator++) {
+                            var intDeadId = arrDeadIds[intIterator];
+                            //alert('DeadId == '+intDeadId);
+                            if(intDeadId!=''){
+                                var ajaxDisplay = document.getElementById('type_'+intDeadId);
+                                ajaxDisplay.style.backgroundColor = "#e60000";
+                                ajaxDisplay.style.color = "#ffffff";
+
+                                if(intDeadId == 1){ //Check if farmer died then game over
+                                    document.getElementById('feedFarmerAnimal').disabled = true;
+                                    alert('Sorry Farmer died, Game Over - Start a New game');
+                                }
+                            }
+                        }
+                        
+                        if(arrDisplay[3]!=''){
+                            alert(arrDisplay[3]);
+                        }   
+
+                    }
+                    else if(arrDisplay[1] == 'GFDS'){
+                        var ajaxDisplay = document.getElementById('gameSummary');
+                        ajaxDisplay.innerHTML = arrDisplay[2];
+                        ajaxDisplay.style.display = '';
+                        //Disable click to feed button 
                         document.getElementById('feedFarmerAnimal').disabled = true;
-                        alert('Sorry Farmer died, Game Over - Start a New game');
-                        var ajaxDisplay = document.getElementById('type_'+arrDisplay[1]);
-                        ajaxDisplay.style.backgroundColor = "#e60000";
-                        ajaxDisplay.style.color = "#ffffff";
-                    }
-                    else if(arrDisplay[0] == 'OCD'){ //One cow died
-                        alert('Sorry one cow died === '+arrDisplay[1]);
-                        var ajaxDisplay = document.getElementById('type_'+arrDisplay[1]);
-                        ajaxDisplay.style.backgroundColor = "#e60000";
-                        ajaxDisplay.style.color = "#ffffff";
-                    }
-                    else if(arrDisplay[0] == 'OBD'){ //One bunny died
-                        alert('Sorry one bunny died === '+arrDisplay[1]);
-                        var ajaxDisplay = document.getElementById('type_'+arrDisplay[1]);
-                        ajaxDisplay.style.backgroundColor = "#e60000";
-                        ajaxDisplay.style.color = "#ffffff";
                     }    
-                    else{
-                        var ajaxDisplay = document.getElementById(arrDisplay[0]);
-                        ajaxDisplay.innerHTML = 'Fed';
-                        ajaxDisplay.style.fontStyle = "italic"
-                        ajaxDisplay.style.backgroundColor = "#33ff33";
-                    }
-                     
                 }
             }
         }

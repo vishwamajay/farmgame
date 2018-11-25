@@ -6,7 +6,7 @@
     $arr_bunny_type_ids = array(4=>"Bunny1",5=> "Bunny2",6=> "Bunny3",7=> "Bunny4");
 
     //Max total number of clicks to feed	
-    $int_total_rounds = 30;//50;
+    $int_total_rounds = 50; //15;//50;
     
     //Flag indicating alive status of farmer and animals, by default true
     $bol_is_farmer_alive = true;
@@ -14,7 +14,7 @@
     $bol_is_bunny_alive = true;
 
     //Click limit for feeding
-    $int_max_fed_clicks_farmer = 15;
-    $int_max_fed_clicks_cows = 2;//10;
-    $int_max_fed_clicks_bunny = 2;//8;
+    $int_max_fed_clicks_farmer = 15; //7;//15;
+    $int_max_fed_clicks_cows = 10; //2;//10;
+    $int_max_fed_clicks_bunny = 8; //2;//8;
 

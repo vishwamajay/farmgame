@@ -13,6 +13,10 @@
     $_SESSION['arr_bunny_type_ids'] = $arr_bunny_type_ids;
 
     $_SESSION['int_feed_counter'] = 0;
+    
+    $_SESSION['int_dead_count_farmer'] = 0;
+    $_SESSION['int_dead_count_cow'] = 0;
+    $_SESSION['int_dead_count_bunny'] = 0;
 
     //Intialize default fed click counters
     $_SESSION['int_fed_clicks_farmer'] = 0;    
@@ -34,6 +38,8 @@
       
     //Setting grid html in a variable, which can be printed  
       $str_grid_html = '<input type="button" onclick="feedFarmerAnimal()" value="Click Here To Feed" name="feedFarmerAnimal" id="feedFarmerAnimal" />';
+      
+      $str_grid_html.= '<p style="display:none" id="gameSummary"></p>';
 
       $str_grid_html.= '<table>';
 
